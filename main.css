@@ -1,0 +1,433 @@
+input{
+    caret-shape: block;
+    caret-color:#2fff66;
+}
+/* CRT Design */
+@keyframes flicker {
+    0% {
+      opacity: 0.27861;
+    }
+    5% {
+      opacity: 0.34769;
+    }
+    10% {
+      opacity: 0.23604;
+    }
+    15% {
+      opacity: 0.90626;
+    }
+    20% {
+      opacity: 0.18128;
+    }
+    25% {
+      opacity: 0.83891;
+    }
+    30% {
+      opacity: 0.65583;
+    }
+    35% {
+      opacity: 0.67807;
+    }
+    40% {
+      opacity: 0.26559;
+    }
+    45% {
+      opacity: 0.84693;
+    }
+    50% {
+      opacity: 0.96019;
+    }
+    55% {
+      opacity: 0.08594;
+    }
+    60% {
+      opacity: 0.20313;
+    }
+    65% {
+      opacity: 0.71988;
+    }
+    70% {
+      opacity: 0.53455;
+    }
+    75% {
+      opacity: 0.37288;
+    }
+    80% {
+      opacity: 0.71428;
+    }
+    85% {
+      opacity: 0.70419;
+    }
+    90% {
+      opacity: 0.7003;
+    }
+    95% {
+      opacity: 0.36108;
+    }
+    100% {
+      opacity: 0.24387;
+    }
+  }
+  @keyframes textShadow {
+    0% {
+      text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    5% {
+      text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    10% {
+      text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    15% {
+      text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    20% {
+      text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    25% {
+      text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    30% {
+      text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    35% {
+      text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    40% {
+      text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    45% {
+      text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    50% {
+      text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    55% {
+      text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    60% {
+      text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    65% {
+      text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    70% {
+      text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    75% {
+      text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    80% {
+      text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    85% {
+      text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    90% {
+      text-shadow: 3.443339761481781px 0 1px rgba(0,30,255,0.5), -3.443339761481781px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    95% {
+      text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+    100% {
+      text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+  }
+  .crt::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+  .crt::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 1px, 3px 100%;
+    pointer-events: none;
+  }
+  .crt {
+    animation: textShadow 1.6s infinite;
+  }
+  
+/* CRT END */
+body{
+    color:#2fff66;
+    font: 1.3rem Inconsolata, monospace;
+    text-shadow: 0 0 1px #C8C8C8;
+    background-color: #080d09;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.container{
+    height: 100%;
+    flex: 1;
+    position: relative;
+    color: #2fff66;
+    width: 380px;
+    margin: 0px auto;
+    margin-top: 30px;
+    text-align: center;
+}
+.container #back.button{
+    text-decoration: none;
+    color: #2fff66;
+    margin: 10px;
+    display: inline-block;
+    padding: 3px 6px;
+    font-size: 14px;
+}
+.container h1{
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    right: 0px;
+    margin: auto auto;
+}
+.container .connection-list{
+    border-top: 1px solid #2fff66;
+    width: 200px;
+    margin: 0px auto;
+    margin-top: 10px;
+}
+.container .connection-list span{
+    font-size: 14px;
+}
+.container h2{
+    margin: 5px 0px;
+}
+.container .id-input{
+    position: absolute;
+    top: 30px;
+    height: 16px;
+    width: 150px;
+    left: 0px;
+    right: 0px;
+    margin: auto auto;
+    border-radius: 3px;
+    border: 1px solid #2fff66;
+    background-color: #080d09;
+    padding: 0px 4px;
+    color: #2fff66;
+    text-align: center;
+}
+.container .id-input:hover{
+    border-color: #2fff66;
+}
+.button{
+    color: #2fff66;
+    border-radius: 3px;
+    border: 1px solid #2fff66;
+    background-color: #080d09;
+    text-align: center;
+}
+.button:hover{
+    cursor: pointer;
+    border-color: #ffffff;
+}
+.container .button-cont{
+    
+    padding-top: 60px;
+    margin-bottom: 10px;
+}
+.container .button-host-cont{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #2fff66;
+    border-radius: 4px;
+}
+.container .button-host-cont .button.first{
+    border-bottom: 1px solid #2fff66;
+}
+.container .button-host-cont .button{
+    display: block;
+    width: 100%;
+    line-height: 3;
+    border: none;
+    text-decoration: none;
+}
+.container .button-host-cont .button:hover{
+    background-color: #080d09;
+}
+.resize-fix{
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 0px;
+    -webkit-app-region: no-drag;
+}
+.no-drag{
+    -webkit-app-region: no-drag;
+}
+
+.messaging{
+    margin: 0px auto;
+    width: 100%;
+    flex: 1;
+    min-height: 100%;
+}
+
+.messaging #disconnect{
+
+    text-align: center;
+}
+.messaging .send-message{
+
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+.messaging .send-message .message-input{
+    color: #2fff66;
+    width: 85%;
+    float: left;
+    border: 1px solid #2fff66;
+    background-color: #080d09;
+}
+.messaging .send-message button{
+    width: 13%;
+}
+
+.messaging .messages{
+    padding-top: 15px;
+    width: 100%;
+    height: 400px;
+    flex: 1;
+    overflow-y: auto;
+}
+.messaging .message{
+    margin-bottom: 10px;
+    border: 1px solid #2fff66;
+    padding: 7px 5px;
+    border-radius: 3px;
+}
+.messaging .message p{
+    text-align: left;
+}
+.messaging .message .message-sender{
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+.messaging .message .message-text{
+    font-size: 14px;
+    padding-left: 5px;
+}
+.titlebar{
+    position: relative;
+    -webkit-app-region: drag;
+    background-color: #000000;
+    height: 30px;
+    width: 100%;
+    margin-top: 0px;
+    padding-top: 0px;
+    color: #ffffff;
+}
+.titlebar .page-title{
+    text-decoration: none;
+    color: #2fff66;
+    line-height: 2.3;
+    margin-left: 5px;
+    font-size: 14px;
+}
+.titlebar .titlebar-buttons{
+    line-height: 2.5;
+    float: right;
+    margin-right: 5px;
+    -webkit-app-region: no-drag;
+}
+.titlebar .titlebar-buttons li{
+    font-size: 20px;
+    margin-left: 8px;
+    -webkit-app-region: no-drag;
+    cursor: pointer;
+}
+.titlebar .titlebar-buttons li:hover{
+    color: #58a3ff;
+}
+.titlebar .titlebar-buttons li:active{
+    color: #5294e2;
+}
+
+.titlebar .titlebar-buttons #maximize:hover{
+    color: #ffff00;
+    
+}
+.titlebar .titlebar-buttons #maximize:active{
+    color: #c0c000;
+}
+.titlebar .titlebar-buttons #close:hover{
+    color: #ff5858;
+}
+.titlebar .titlebar-buttons #close:active{
+    color: #bd4444;
+}
+.hidden{
+    display: none !important;
+}
+@media(min-height:550px){
+    .messaging .messages{
+        height: 420px;
+    }
+}
+@media(min-height:600px){
+    .messaging .messages{
+        height: 470px;
+    }
+}
+@media(min-height:650px){
+    .messaging .messages{
+        height: 520px;
+    }
+}
+@media(min-height:700px){
+    .messaging .messages{
+        height: 570px;
+    }
+}
+@media(min-height:750px){
+    .messaging .messages{
+        height: 620px;
+    }
+}
+@media(min-height:800px){
+    .messaging .messages{
+        height: 670px;
+    }
+}
+@media(min-height:850px){
+    .messaging .messages{
+        height: 720px;
+    }
+}
+@media(min-height:900px){
+    .messaging .messages{
+        height: 770px;
+    }
+}
+@media(min-height:950px){
+    .messaging .messages{
+        height: 820px;
+    }
+}
+@media(min-height:1000px){
+    .messaging .messages{
+        height: 870px;
+    }
+}
