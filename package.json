@@ -1,0 +1,25 @@
+{
+  "name": "net-irc",
+  "version": "1.0.0",
+  "description": "peer-to-peer in electron using peerjs.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Jacquelinne",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "am-x2.com",
+  "devDependencies": {
+    "electron": "^26.2.0"
+  },
+  "dependencies": {
+    "peerjs": "^1.5.0"
+  }
+}
