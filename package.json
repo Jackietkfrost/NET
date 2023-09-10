@@ -1,0 +1,25 @@
+{
+  "name": "peerjs-electron",
+  "version": "1.0.0",
+  "description": "peer-to-peer in electron using peerjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheIceRo/peerjs-electron.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheIceRo/peerjs-electron/issues"
+  },
+  "homepage": "https://github.com/TheIceRo/peerjs-electron#readme",
+  "devDependencies": {
+    "electron": "^26.2.0"
+  },
+  "dependencies": {
+    "peerjs": "^1.5.0"
+  }
+}
