@@ -1,2 +1,2 @@
 # NET
- Non-Public Enactment Transmition
+ Non-Public Enactment Transmission
