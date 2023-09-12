@@ -11,3 +11,4 @@ google-api.key
 /node_modules
 */node_modules
 out/
+*.bat
