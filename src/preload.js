@@ -8,6 +8,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
 })
 
+contextBridge.exposeInMainWorld('netVar', {
+  getUsername: () => ipcRenderer.invoke('getUsername'),
+  getPeerId: () => ipcRenderer.invoke('getPeerId'),
+  setUsername: (name) => ipcRenderer.send('set-username', name),
+})
 contextBridge.exposeInMainWorld('titlebar', {
   closeWindow: () => ipcRenderer.send('close-window'),
   maxWindow: () => ipcRenderer.send('max-window'),
