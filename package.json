@@ -1,25 +1,34 @@
 {
   "name": "net-irc",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "peer-to-peer in electron using peerjs.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Jackietkfrost/NET/"
   },
   "author": "Jacquelinne",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/Jackietkfrost/NET/issues"
   },
   "homepage": "am-x2.com",
   "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
     "electron": "^26.2.0"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "peerjs": "^1.5.0"
   }
 }
