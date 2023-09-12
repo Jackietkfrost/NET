@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="crt">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="reset.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script src="basics.js"></script>
 </head>
-<body class="crt">
+<body class="">
     <div class="resize-fix no-drag"></div>
     <nav class="titlebar">
-        <a class="page-title">Select connection</a>
-        <ul class="titlebar-buttons">
-            <li id="minimize" class="material-icons">remove</li>
-            <li id="maximize" class="material-icons">crop_square</li>
-            <li id="close" class="material-icons">close</li>
-        </ul>
+        <div>
+            <p class="page-title">Select connection</p>
+            <ul class="titlebar-buttons">
+                <li id="minimize" class="material-icons">remove</li>
+                <li id="maximize" class="material-icons">crop_square</li>
+                <li id="close" class="material-icons">close</li>
+            </ul>
+        </div>
     </nav>
+
     <div class="container">
-        <label for="username"></label>
-    </div>
-    <div class="container">
+        <!-- Todo: Add Username input-->
+        <label class="label" for="user-info">Username</label><br>
+        <input id="user-info" class="user-info id-input" type="text">
         <div class="button-host-cont">
-            <a href="client.html" class="button first">Client</a>
-            <a href="host.html" class="button">Host</a>
+            <a href="client.html" type="button" class=" button">Client</a>
+            <a href="host.html" type="button" class=" button">Host</a>
         </div>
     </div>
 </body>
