@@ -9,9 +9,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
 })
 
 contextBridge.exposeInMainWorld('netVar', {
-  getUsername: () => ipcRenderer.invoke('getUsername'),
+  getUsername: () => ipcRenderer.send('getUsername'),
   getPeerId: () => ipcRenderer.invoke('getPeerId'),
   setUsername: (name) => ipcRenderer.send('set-username', name),
+  getReqUser: (callback) => ipcRenderer.on('get-username', callback),
 })
 contextBridge.exposeInMainWorld('titlebar', {
   closeWindow: () => ipcRenderer.send('close-window'),
