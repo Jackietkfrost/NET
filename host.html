@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="crt">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,10 +13,10 @@
     <script src="basics.js"></script>
     <script src="host.js"></script>
 </head>
-<body class="crt">
+<body class="">
     <div class="resize-fix no-drag"></div>
     <nav class="titlebar">
-        <a href="index.html" class="page-title">Host</a>
+        <p class="page-title">Host</p>
         <ul class="titlebar-buttons">
             <li id="minimize" class="material-icons">remove</li>
             <li id="maximize" class="material-icons">crop_square</li>
@@ -32,7 +32,7 @@
     <div class="container">
         <div id="connection-panel">
             <h1 class="id-title">Your ID:</h1>
-            <input id="id-input" class="id-input" type="text" readonly>
+            <textarea id="id-input" class="id-input" type="text" readonly></textarea>
             <div class="button-cont">
                 <button id="copy-id" class="button">Copy ID</button>
                 <button id="generate-id" class="button">Generate</button>
