@@ -1,9 +1,24 @@
-const {app,BrowserWindow,ipcMain,Menu,IncomingMessage,clipboard } = require('electron');
+const {app,BrowserWindow,ipcMain,Menu, Notification, IncomingMessage,clipboard } = require('electron');
 const url = require('url');
 const path = require('path');
 let userName;
+//let uuid = store.get('uuid');
 let win;
+const NOTIFICATION_TITLE = 'N.E.T.';
 
+
+// Check if storage has uuid, if not, run generateUUID function from userIDGeneration.js
+function getUUID() {
+    //WIP
+    // Check 
+    if(localStorage.getItem('uuid') === null) {
+        uuid = generateUUID();
+        localStorage.setItem('uuid', uuid);
+    }
+    return uuid;
+}
+
+//console.log("Generating User ID: ",generateUUID());
 // Windows API Section
 function minWindow() {
    win.minimize();
@@ -15,9 +30,26 @@ function closeWindow() {
     console.log("Closing window..");
     app.quit();
 }
+
+function sendNotif(notifEmitter, notifContent){
+    let notif = new Notification({
+        title: NOTIFICATION_TITLE,
+        subtitle: notifEmitter,
+        body: `${notifEmitter} \n${notifContent}`
+    });
+    notif.show();
+}
+
+function getWinFocus(_event, notifEmitter, notifContent){
+    if(!win.isFocused()){
+        console.log(notifEmitter);
+        sendNotif(notifEmitter,notifContent);
+    }
+}
 ipcMain.on('min-window', minWindow);
 ipcMain.on('max-window', maxWindow);
 ipcMain.on('close-window', closeWindow);
+ipcMain.on('check-if-focused', getWinFocus)
 // End Windows API Section
 
 // Peerjs Section
