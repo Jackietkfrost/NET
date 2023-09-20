@@ -4,7 +4,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   setTitle: (title) => ipcRenderer.send('set-title', title),
   reloadPage: () => ipcRenderer.send('reload-page'),
   copyText: (copiedText) => ipcRenderer.send('copy-text', copiedText),
-  pasteText: () => ipcRenderer.invoke('paste-text')
+  pasteText: () => ipcRenderer.invoke('paste-text'),
+  getUUID: () => ipcRenderer.invoke('get-uuid'),
+  checkIfFocused: (messageEmitter,message) => ipcRenderer.send('check-if-focused',messageEmitter, message),
 
 })
 
