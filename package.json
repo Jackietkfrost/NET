@@ -1,5 +1,6 @@
 {
   "name": "net-irc",
+  "productName": "N.E.T. IRC",
   "version": "0.0.3",
   "description": "peer-to-peer in electron using peerjs.",
   "main": "main.js",
