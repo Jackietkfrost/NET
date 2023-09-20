@@ -1,7 +1,6 @@
 let peer = new Peer();
 let conn;
 let inputId;
-let connStatus;
 let pasteId;
 let connectBtn;
 let messageCont;
@@ -11,7 +10,7 @@ function getUser(){
     window.netVar.getUsername();
     window.netVar.getReqUser((event,req) => {
         userName = req;
-        console.log(`Event info: [${event}] \n User name is now: ${userName}`);  
+        console.log(event);  
         event.sender.send('send-complete', userName);
     });
 }
@@ -22,10 +21,11 @@ function startPeer(){
         console.log(`User name is now: ${userName}`);
         //console.log('My peer ID is: ' + id);
         peer.on('connection',function(dataConnection){
-            console.log("connected to "+dataConnection.peer);
-            document.getElementById("connection-status").innerHTML = "Connected to "+dataConnection.peer;
+            
+            console.log("connected to " + dataConnection.peer);
+            document.getElementById("connection-status").innerHTML = "Connected to " + dataConnection.peer;
             dataConnection.send("test");
-            console.log("connected to "+dataConnection.peer+" .open:" + dataConnection.open + " .reliable:"+dataConnection.reliable);
+            console.log("connected to " + dataConnection.peer + " .open:" + dataConnection.open + " .reliable:" + dataConnection.reliable);
 
         });
 
@@ -49,21 +49,29 @@ function playNotifSound(){
 
 }
 
-function addMessage(name, text){
-    let message = document.getElementsByClassName("message")[0].cloneNode(true);
-    message.getElementsByClassName("message-sender")[0].innerHTML = name;
-    message.getElementsByClassName("message-text")[0].innerHTML = text;
-    messageCont.appendChild(message);
-    message.scrollIntoView()
+function addMessage(name, content, timestamp){
+    window.electronAPI.checkIfFocused(name, content);
+    let messageBox = document.getElementsByClassName("message")[0].cloneNode(true);
+    messageBox.getElementsByClassName("message-sender")[0].innerHTML = name;
+    messageBox.getElementsByClassName("message-text")[0].innerHTML = content;
+    messageCont.appendChild(messageBox);
+    messageBox.scrollIntoView()
     
 }
 
 // TODO: Turn the Send Message function into a separate js file because both host and client do this.
+// REVISE
 function sendMessage(text){
-    
+    let message =
+        {
+            name:userName,
+            peerID: peer.id,
+            timestamp: "placeholder date",
+            content: text
+        }
     if(text != ""){
         document.getElementById("message").value = "";
-        conn.send(text);
+        conn.send(message);
         addMessage(userName,text);
         
     }
@@ -82,17 +90,24 @@ function addPeerListeners(){
     connectBtn.addEventListener("click",function(){ 
         if(inputId.value!='') {
             console.log('Connecting to peer..');
-            conn = peer.connect(inputId.value);
+            conn = peer.connect(inputId.value, {
+                metadata:{
+                    name:userName,
+                    
+                }
+            });
         
         
         conn.on("open",function(dataConnection){
             console.log("connected");
+            //console.log('Metadata:', dataConnection.metadata);
             conn.on("data",function(data){
                 
                 
-                console.log("received "+ [data]);
+                console.log("received ", data);
+                
                 playNotifSound();
-                addMessage("them",data);
+                addMessage(data.name,data.content);
                 //addMessage(data.username,data);
             });
             document.getElementById("connection-status").innerHTML = 'Connected';
