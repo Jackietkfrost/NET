@@ -172,6 +172,7 @@ body{
     background-color: #080d09;
     display: flex;
     flex-direction: column;
+    margin: 0px;
 }
 
 .container{
@@ -180,7 +181,7 @@ body{
     position: relative;
     color: #2fff66;
     margin: 0px auto;
-    margin-top: 20%;
+    margin-top: 5%;
     text-align: center;
 }
 .container #back.button{
@@ -276,6 +277,7 @@ body{
 
     position: absolute;
     width: 100%;
+    display:flex
 }
 .messaging .send-message .message-input{
     color: #2fff66;
@@ -285,7 +287,9 @@ body{
     background-color: #00000000;
 }
 .messaging .send-message button{
-    width: 13%;
+    width: auto;
+    margin-left: 5px;
+
 }
 
 .messaging .messages{
@@ -317,14 +321,11 @@ body{
     position: absolute;
     -webkit-app-region: drag;
     background-color: #000000;
-    height: 5.5%;
+    height: auto;
     width: 100%;
 }
 .titlebar .page-title{
-    text-decoration: none;
-    line-height: 70%;
     margin-left: 2%;
-    font-size: 14px;
 }
 .titlebar .titlebar-buttons{
     float: right;
@@ -332,7 +333,7 @@ body{
     -webkit-app-region: no-drag;
 }
 .titlebar .titlebar-buttons li{
-    font-size: 20px;
+    font-size: auto;
     margin-left: 8px;
     -webkit-app-region: no-drag;
     cursor: pointer;

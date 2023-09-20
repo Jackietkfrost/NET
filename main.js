@@ -8,6 +8,11 @@ const NOTIFICATION_TITLE = 'N.E.T.';
 
 
 // Check if storage has uuid, if not, run generateUUID function from userIDGeneration.js
+/**
+ * Gets the UUID from local storage, and if it's not available, it generates it.
+ * Needs to validate itself with some data that identifies who had the UUID first on connection.
+ * @returns {string} uuid
+ */
 function getUUID() {
     //WIP
     // Check 
@@ -18,8 +23,10 @@ function getUUID() {
     return uuid;
 }
 
+
 //console.log("Generating User ID: ",generateUUID());
 // Windows API Section
+app.setAppUserModelId('N.E.T.');
 function minWindow() {
    win.minimize();
 }
@@ -30,7 +37,11 @@ function closeWindow() {
     console.log("Closing window..");
     app.quit();
 }
-
+/**
+ * Sends Notification to OS. 
+ * @param {*} notifEmitter 
+ * @param {object} notifContent 
+ */
 function sendNotif(notifEmitter, notifContent){
     let notif = new Notification({
         title: NOTIFICATION_TITLE,
@@ -39,7 +50,6 @@ function sendNotif(notifEmitter, notifContent){
     });
     notif.show();
 }
-
 function getWinFocus(_event, notifEmitter, notifContent){
     if(!win.isFocused()){
         console.log(notifEmitter);
@@ -107,7 +117,7 @@ function copyText(_event, copiedText) {
 app.on("ready",function(){
     win = new BrowserWindow({
         webPreferences:{
-            nodeIntegration:true,
+            //nodeIntegration:true,
             //contextIsolation:false,
             preload: path.join(__dirname, 'src/preload.js')
         },
