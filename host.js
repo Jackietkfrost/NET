@@ -91,10 +91,10 @@ function startHost(){
                 console.log("Got data:", data);
               
                 // Send data to all connected peers except the sender
-                connectedPeers.forEach(function(peerID) {
-                  if (peerID !== dataConnection.peer) {
+                connectedPeers.forEach(function(connection) {
+                  if (connection.peer !== dataConnection.peer) {
                     // Send the data through the existing connection
-                    connectedPeers.send(data);
+                    connection.send(data);
                   }
                 });
               });
