@@ -38,21 +38,28 @@ function addMessage(name, text){
     document.getElementById("messages").appendChild(message);
     messageBox.scrollIntoView()
 }
-function sendMessage(text){
-    text = document.getElementById("message").value;
+// Don't think we need this anymore, going to deprecate.
+/**
+ * @deprecated We no longer need to send messages from the
+ * server.
+ * @param {*} textInput 
+ */
+function sendMessage(textInput){
+    textInput = document.getElementById("message").value;
     let message =
         {
             name:userName,
             peerID: host.id,
             timestamp: "placeholder date",
-            content: text
+            content: textInput
         }
-    if(text != ""){
+    if(textInput != ""){
         document.getElementById("message").value = "";
         conn.send(message);
-        addMessage(userName,text);
+        addMessage(userName,textInput);
     }
 }
+
 function startHost(){
     host.on('open', function(id) {
         getUser();
@@ -64,15 +71,24 @@ function startHost(){
         });
         host.on('connection',function(dataConnection){
             console.log(dataConnection);
-            console.log("Connected to Peer ID:" + dataConnection.peer +" .open:" + dataConnection.open + " .reliable:" + dataConnection.reliable + ".label: " + dataConnection.label);
+            
+            //Let's just get the entire data connection data obj.
+            //console.log("Connected to Peer ID:" + dataConnection.peer +" .open:" + dataConnection.open + " .reliable:" + dataConnection.reliable + ".label: " + dataConnection.label);
+            
+            // Change this to display the proper data of who connected, since we're using this panel for the server GUI.
             document.getElementById("connection-status").innerHTML = "Connected";
+
+            //Start adding in all the dataconnection objects into our list
+            //so we can refer back to them when sending data we receive
+            // TODO: Sanitize and validate data received. (Try and strongtype it later as well.)
             connectedPeers.push(dataConnection);
+            
             conn = dataConnection;
             console.log('Metadata: ',dataConnection.metadata);
             dataConnection.on('data', function(data) {
-                addMessage(data.name, data.content);
+                //addMessage(data.name, data.content);
                 playNotifSound();
-                console.log("Got data:", [data]);
+                console.log("Got data:", data);
               
                 // Send data to all connected peers except the sender
                 connectedPeers.forEach(function(peerID) {
@@ -82,18 +98,10 @@ function startHost(){
                   }
                 });
               });
+              //Change this to show the data of who is connected by metadata.userName + metadata.peerID
             document.getElementById("connection-panel").classList.add("hidden");
             document.getElementById("messaging-panel").classList.remove("hidden");
-            document.getElementById("message").addEventListener("keydown",function(e){
-                if(e.key==="Enter"){
-                    let text = document.getElementById("message").value;
-                    sendMessage(text);
-                }
-            });
-            document.getElementById("send").addEventListener("click",function(){
-                let text = document.getElementById("message").value;
-                sendMessage(text);
-            });
+            
         });
 
         host.on('disconnected',function(){
