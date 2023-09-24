@@ -1,9 +1,14 @@
 let peer = new Peer();
 let conn;
+let peerID;
 let inputId;
 let pasteId;
 let connectBtn;
 let messageCont;
+
+/**
+ * @param {string} userName - Sending client's user name.
+ */
 let userName;
 // TODO Add a variable that holds
 function getUser(){ 
@@ -15,11 +20,46 @@ function getUser(){
     });
 }
 
+function getTimeStamp(){
+    let timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return timestamp;
+}
+function playNotifSound(){
+    const notifSound = new Audio('assets/sounds/notif_sound.mp3');
+    notifSound.play();
+    console.log(`Playing sound ${notifSound}`);
+    
+
+}
+
+/**
+ * Displays message to client screen [Visual]
+ * @param {*} name - User name of the client that sent the message.
+ * @param {*} content - Message content (Usually what user inputs.)
+ */
+function addMessage(data){
+    
+    window.electronAPI.checkIfFocused(data.name, data.content);
+    let messageBox = document.getElementsByClassName("message")[0].cloneNode(true);
+    messageBox.getElementsByClassName("message-sender")[0].innerHTML = data.name;
+    messageBox.getElementsByClassName("message-text")[0].innerHTML = data.content;
+    //messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = data.timestamp;
+    //Add:
+    //messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = timestamp;
+    messageCont.appendChild(messageBox);
+    messageBox.scrollIntoView()
+    
+}
+
+// Establishes all the peer emitters.
 function startPeer(){
     peer.on('open', function(id) {
+        peerID = id;
         getUser();
         console.log(`User name is now: ${userName}`);
         //console.log('My peer ID is: ' + id);
+
+        // Connects to the peer.
         peer.on('connection',function(dataConnection){
             
             console.log("connected to " + dataConnection.peer);
@@ -32,6 +72,7 @@ function startPeer(){
         peer.on('error', function(err){
             console.log(err);
         })
+
         peer.on('close',function(){
             console.log("lost connection");
             document.getElementById("connection-status").innerHTML = "Lost connection";
@@ -39,34 +80,20 @@ function startPeer(){
     });
 }
 
-//TODO: Add a function to package a message with a username into a single object containing both objects. 
 
-function playNotifSound(){
-    const notifSound = new Audio('assets/sounds/notif_sound.mp3');
-    notifSound.play();
-    console.log(`Playing sound ${notifSound}`);
-    
 
-}
 
-function addMessage(name, content, timestamp){
-    window.electronAPI.checkIfFocused(name, content);
-    let messageBox = document.getElementsByClassName("message")[0].cloneNode(true);
-    messageBox.getElementsByClassName("message-sender")[0].innerHTML = name;
-    messageBox.getElementsByClassName("message-text")[0].innerHTML = content;
-    messageCont.appendChild(messageBox);
-    messageBox.scrollIntoView()
-    
-}
-
-// TODO: Turn the Send Message function into a separate js file because both host and client do this.
 // REVISE
+/**
+ * @todo 
+ * @param {string} text - Message being sent from this client
+ */
 function sendMessage(text){
     let message =
         {
             name:userName,
-            peerID: peer.id,
-            timestamp: "placeholder date",
+            peerID: peerID,
+            timestamp: getTimeStamp(),
             content: text
         }
     if(text != ""){
@@ -93,6 +120,7 @@ function addPeerListeners(){
             conn = peer.connect(inputId.value, {
                 metadata:{
                     name:userName,
+                    peerID:peerID
                     
                 }
             });
@@ -100,6 +128,7 @@ function addPeerListeners(){
         
         conn.on("open",function(dataConnection){
             console.log("connected");
+
             //console.log('Metadata:', dataConnection.metadata);
             conn.on("data",function(data){
                 
@@ -107,14 +136,18 @@ function addPeerListeners(){
                 console.log("received ", data);
                 
                 playNotifSound();
-                addMessage(data.name,data.content);
+                addMessage(data);
+
+                
                 //addMessage(data.username,data);
             });
             document.getElementById("connection-status").innerHTML = 'Connected';
             document.getElementById("connection-panel").classList.add("hidden");
             document.getElementById("messaging-panel").classList.remove("hidden");
             document.getElementById("disconnect").addEventListener("click",function(){
-                sendMessage("$Server: disconnected");
+                
+                // Set this to send a "[Username] Disconnected."
+                //sendMessage("$Server: disconnected");
                 window.electronAPI.reloadPage();
             });
             document.getElementById("message").addEventListener("keydown",function(e){
