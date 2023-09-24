@@ -300,7 +300,7 @@ body{
     flex: 1;
     overflow-y: auto;
 }
-.messaging .message{
+.messaging .messageBox{
     margin-bottom: 10px;
     border: 1px solid #2fff66;
     padding: 7px 5px;
