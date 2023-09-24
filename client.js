@@ -23,11 +23,8 @@ function getUser(){
 function getTimeStamp(){
     const currDate = new Date();
     let timestamp = {
-        year: currDate.getFullYear(),
-        month: currDate.getMonth() + 1,
-        day: currDate.getDate(),
-        hour: currDate.getHours(),
-        minute: currDate.getMinutes()
+        date:currDate.Now(),
+        time:currDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
     return timestamp;
 }
@@ -52,7 +49,7 @@ function addMessage(data){
     messageBox.getElementsByClassName("message-text")[0].innerHTML = data.content;
     //TODO: Turn this into a check if time passed is past a day (i.e. 12am), and change the timestamp on the message to the past moment. 
     //(i.e. Yesterday, 10:30pm) and then follow it up with a new date. (i.e. full date format, and hour)
-    messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = `${data.timestamp.hour}:${data.timestamp.minute}`;
+    messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = data.timestamp.time;
     messageCont.appendChild(messageBox);
     messageBox.scrollIntoView()
     
