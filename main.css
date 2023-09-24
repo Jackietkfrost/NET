@@ -306,14 +306,21 @@ body{
     padding: 7px 5px;
     border-radius: 3px;
 }
-.messaging .message p{
+.messaging .messageBox p{
     text-align: left;
 }
-.messaging .message .message-sender{
+.messaging .messageBox .message-info{
     font-size: 11px;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
 }
-.messaging .message .message-text{
+.messaging .messageBox .message-info .message-timestamp{
+  font-size: 11px;
+  margin-bottom: 5px;
+
+}
+.messaging .messageBox .message-text{
     font-size: 14px;
     padding-left: 5px;
 }
