@@ -15,6 +15,7 @@ contextBridge.exposeInMainWorld('netVar', {
   getPeerId: () => ipcRenderer.invoke('getPeerId'),
   setUsername: (name) => ipcRenderer.send('set-username', name),
   getReqUser: (callback) => ipcRenderer.on('get-username', callback),
+  closeConnection: () => ipcRenderer.send('close-connection', closeConnection()),
 })
 contextBridge.exposeInMainWorld('titlebar', {
   closeWindow: () => ipcRenderer.send('close-window'),

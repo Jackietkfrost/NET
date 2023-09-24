@@ -10,16 +10,32 @@ let messageCont;
  * @param {string} userName - Sending client's user name.
  */
 let userName;
-// TODO Add a variable that holds
+
+
+/**
+ * Retrieves the user information.
+ * @todo - Improve this code to be more efficient. It could probably get the username with just the one function (getReqUser)
+ * and add a check if the username isn't null, so we only ever do this once. (Better safe than sorry.)
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function getUser(){ 
     window.netVar.getUsername();
-    window.netVar.getReqUser((event,req) => {
+    window.netVar.getReqUser((_event,req) => {
         userName = req;
-        console.log(event);  
-        event.sender.send('send-complete', userName);
+        //console.log(event);  
+        //event.sender.send('send-complete', userName);
     });
 }
 
+
+/**
+ * Returns the current timestamp.
+ *
+ * @namespace {object} timestamp - An object containing the current date and time.
+ *     @prop    {string} timestamp.date - The current date in the format "Month Day, Year".
+ *     @prop    {string} timestamp.time - The current time in the format "HH:MM AM/PM".
+ */
 function getTimeStamp(){
     const currDate = new Date();
     let timestamp = {
@@ -28,6 +44,7 @@ function getTimeStamp(){
     }
     return timestamp;
 }
+
 function playNotifSound(){
     const notifSound = new Audio('assets/sounds/notif_sound.mp3');
     notifSound.play();
@@ -38,8 +55,12 @@ function playNotifSound(){
 
 /**
  * Displays message to client screen [Visual]
- * @param {*} name - User name of the client that sent the message.
- * @param {*} content - Message content (Usually what user inputs.)
+ * @func addMessage(data)
+ * @namespace {object} data - contains the information of the message.
+ * @prop        {string} data.name - The name of the sender.
+ * @prop        {string} data.content - The content of the message.
+ * @prop        {string} data.timestamp - The timestamp of the message.
+ * @prop        {string} data.content - The content of the message.
  */
 function addMessage(data){
     
@@ -113,6 +134,11 @@ function setPeerVariables(){
     inputId = document.getElementById("id-input");
     messageCont = document.getElementById("messages");
 }
+
+window.netVar.closeConnection(() => {
+    conn.disconnect();
+});
+
 function addPeerListeners(){
     //let window = remote.getCurrentWindow();
     connectBtn.addEventListener("click",function(){ 
@@ -121,7 +147,9 @@ function addPeerListeners(){
             conn = peer.connect(inputId.value, {
                 metadata:{
                     name:userName,
-                    peerID:peerID
+                    peerID:peerID,
+                    uuid:"Test UUID",
+                    ip:"127.0.0.1"
                     
                 }
             });
@@ -159,6 +187,7 @@ function addPeerListeners(){
             });
             sendMessage("$Server: Connected");
         });
+        conn.on("")
     }
     });
     pasteId.addEventListener("click",async function(){
