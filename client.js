@@ -39,7 +39,7 @@ function getUser(){
 function getTimeStamp(){
     const currDate = new Date();
     let timestamp = {
-        date:currDate.Now(),
+        date:currDate.toLocaleString(),
         time:currDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
     return timestamp;
