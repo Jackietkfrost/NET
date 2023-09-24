@@ -70,7 +70,8 @@ function startHost(){
             console.log('Received', data);
         });
         host.on('connection',function(dataConnection){
-            console.log("[HOST DATA]:",dataConnection);
+            console.log("[CONNECTION DATA]:",dataConnection);
+            
             
             
             // Change this to display the proper data of who connected, since we're using this panel for the server GUI.
@@ -80,7 +81,7 @@ function startHost(){
             //so we can refer back to them when sending data we receive
             // TODO: Sanitize and validate data received. (Try and strongtype it later as well.)
             connectedPeers.push(dataConnection);
-            
+            updateConnections();
             conn = dataConnection;
             console.log('Metadata: ',dataConnection.metadata);
             dataConnection.on('data', function(data) {
@@ -112,14 +113,6 @@ function startHost(){
         });
     });
 }
-function listConnections(){
-
-    connectedPeers.forEach(connection => {
-        let connectionItem = document.getElementsByClassName("connection-item")[0].cloneNode(true);
-        connectionItem.innerHTML = `${connection.metadata.name} - ${connection.metadata.peerID}`;
-        connlist.appendChild(connectionItem);
-    });
-}
 
 function setHostVariables(){
     connStatus = document.getElementById("connection-status");
@@ -128,6 +121,29 @@ function setHostVariables(){
     idInfo = document.getElementById("id-input");
     connList = document.getElementById("connection-list");
 }
+
+function updateConnections(){
+    let connectionItem = document.getElementsByClassName("connection-item");
+
+    while(connList.firstChild){
+        connList.removeChild(connList.firstChild);
+    }
+
+    if(connectedPeers.list == 0){
+        let noItem = document.createElement("div");
+        noItem.classList.add("connection-item");
+        noItem.innerHTML = "No connections found...";
+        connList.appendChild(noItem);
+    } else {
+        connectedPeers.forEach(connection => {
+            let newItem = document.createElement("div");
+            newItem.classList.add("connection-item");
+            newItem.innerHTML = `${connection.metadata.name} - ${connection.metadata.peerID}`;
+            connList.appendChild(newItem);
+        });
+    }
+}
+
 function addPeerListeners(){
     
     
