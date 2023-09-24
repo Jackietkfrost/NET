@@ -201,11 +201,11 @@ function addPeerListeners(){
 }
 
 
-function startServer(){
+function startClient(){
     setPeerVariables();
     startPeer();
     addPeerListeners();
 }
 document.addEventListener("DOMContentLoaded",function(){
-    startServer();
+    startClient();
 })
