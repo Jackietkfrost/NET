@@ -81,9 +81,6 @@ function startPeer(){
 }
 
 
-
-
-// REVISE
 /**
  * @todo 
  * @param {string} text - Message text being sent from this client
@@ -133,21 +130,16 @@ function addPeerListeners(){
             conn.on("data",function(data){
                 
                 
-                console.log("received ", data);
+                console.log("[DATA RECEIVED]: ", data);
                 
                 playNotifSound();
                 addMessage(data);
-
-                
-                //addMessage(data.username,data);
             });
             document.getElementById("connection-status").innerHTML = 'Connected';
             document.getElementById("connection-panel").classList.add("hidden");
             document.getElementById("messaging-panel").classList.remove("hidden");
             document.getElementById("disconnect").addEventListener("click",function(){
                 
-                // Set this to send a "[Username] Disconnected."
-                //sendMessage("$Server: disconnected");
                 window.electronAPI.reloadPage();
             });
             document.getElementById("message").addEventListener("keydown",function(e){
