@@ -38,6 +38,7 @@ function getUser(){
  */
 function getTimeStamp(){
     const currDate = new Date();
+
     let timestamp = {
         date:currDate.toLocaleString(),
         time:currDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -135,9 +136,7 @@ function setPeerVariables(){
     messageCont = document.getElementById("messages");
 }
 
-window.netVar.closeConnection(() => {
-    conn.disconnect();
-});
+
 
 function addPeerListeners(){
     //let window = remote.getCurrentWindow();
@@ -187,8 +186,13 @@ function addPeerListeners(){
             });
             sendMessage("$Server: Connected");
         });
-        conn.on("")
-    }
+        conn.on("close",function(){
+            
+            window.netVar.closeConnection((_event, val) => {
+                conn.disconnect();
+            });
+        })
+        }
     });
     pasteId.addEventListener("click",async function(){
         let pastedValue = await window.electronAPI.pasteText();

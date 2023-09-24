@@ -1,3 +1,4 @@
+require('update-electron-app')();
 const {app,BrowserWindow,ipcMain,Menu, Notification, IncomingMessage,clipboard } = require('electron');
 const url = require('url');
 const path = require('path');
@@ -140,10 +141,14 @@ ipcMain.handle("paste-text", async (event, ...args) => {
     return clipboardText;
 });
 
-
+app.on('will-quit', (event) => {
+    event.preventDefault()
+    win.webContents.send('close-connection');
+    app.quit();
+})
 app.on('window-all-closed', () => {
     // CREATE: Create a call to web renderer through webcontent through the preload.js
-    win.webContents.send('close-connection');
+    
     if (process.platform !== 'darwin') {
       app.quit()
     }
