@@ -40,12 +40,10 @@ function playNotifSound(){
 function addMessage(data){
     
     window.electronAPI.checkIfFocused(data.name, data.content);
-    let messageBox = document.getElementsByClassName("message")[0].cloneNode(true);
+    let messageBox = document.getElementsByClassName("messageBox")[0].cloneNode(true);
     messageBox.getElementsByClassName("message-sender")[0].innerHTML = data.name;
     messageBox.getElementsByClassName("message-text")[0].innerHTML = data.content;
-    //messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = data.timestamp;
-    //Add:
-    //messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = timestamp;
+    messageBox.getElementsByClassName("message-timestamp")[0].innerHTML = data.timestamp;
     messageCont.appendChild(messageBox);
     messageBox.scrollIntoView()
     
