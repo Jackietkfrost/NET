@@ -86,12 +86,12 @@ function startPeer(){
 // REVISE
 /**
  * @todo 
- * @param {string} text - Message being sent from this client
+ * @param {string} text - Message text being sent from this client
  */
 function sendMessage(text){
     let message =
         {
-            name:userName,
+            name: userName,
             peerID: peerID,
             timestamp: getTimeStamp(),
             content: text
@@ -99,7 +99,7 @@ function sendMessage(text){
     if(text != ""){
         document.getElementById("message").value = "";
         conn.send(message);
-        addMessage(userName,text);
+        addMessage(message);
         
     }
 
