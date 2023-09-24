@@ -2,6 +2,7 @@ require('update-electron-app')();
 const {app,BrowserWindow,ipcMain,Menu, Notification, IncomingMessage,clipboard } = require('electron');
 const url = require('url');
 const path = require('path');
+
 let userName;
 //let uuid = store.get('uuid');
 let win;
@@ -80,16 +81,12 @@ ipcMain.on('check-if-focused', getWinFocus)
 
 function setUsername(_event, name){
     userName = name;
-    console.log(` User name is now: ${userName}`);
+    //console.log(` User name is now: ${userName}`);
 }
 function getUsername(){
     console.log(`Sending username: ${userName}`);
     win.webContents.send('get-username',userName);
 }
-
-ipcMain.on('send-complete', (_event, value) => {
-    console.log(`[RENDERER] User name is now: ${value}`);
-});
 
 function getPeerId(){
     return peerId;
@@ -117,6 +114,7 @@ function copyText(_event, copiedText) {
 
 app.on("ready",function(){
     win = new BrowserWindow({
+        icon: path.join(__dirname,'assets/images/desktop-icon.ico'),
         webPreferences:{
             //nodeIntegration:true,
             //contextIsolation:false,
