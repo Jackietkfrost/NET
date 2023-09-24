@@ -113,7 +113,12 @@ function startHost(){
     });
 }
 function listConnections(){
-    connList.innerHTML = "connected to" + host.connections.length;
+
+    connectedPeers.forEach(connection => {
+        let connectionItem = document.getElementsByClassName("connection-item")[0].cloneNode(true);
+        connectionItem.innerHTML = `${connection.metadata.name} - ${connection.metadata.peerID}`;
+        connlist.appendChild(connectionItem);
+    });
 }
 
 function setHostVariables(){
