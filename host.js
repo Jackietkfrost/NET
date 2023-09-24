@@ -70,10 +70,8 @@ function startHost(){
             console.log('Received', data);
         });
         host.on('connection',function(dataConnection){
-            console.log(dataConnection);
+            console.log("[HOST DATA]:",dataConnection);
             
-            //Let's just get the entire data connection data obj.
-            //console.log("Connected to Peer ID:" + dataConnection.peer +" .open:" + dataConnection.open + " .reliable:" + dataConnection.reliable + ".label: " + dataConnection.label);
             
             // Change this to display the proper data of who connected, since we're using this panel for the server GUI.
             document.getElementById("connection-status").innerHTML = "Connected";
@@ -99,8 +97,8 @@ function startHost(){
                 });
               });
               //Change this to show the data of who is connected by metadata.userName + metadata.peerID
-            document.getElementById("connection-panel").classList.add("hidden");
-            document.getElementById("messaging-panel").classList.remove("hidden");
+            //document.getElementById("connection-panel").classList.add("hidden");
+            //document.getElementById("messaging-panel").classList.remove("hidden");
             
         });
 
