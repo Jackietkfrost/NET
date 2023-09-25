@@ -44,7 +44,7 @@ function closeWindow() {
  * @param {*} notifEmitter 
  * @param {object} notifContent 
  */
-function sendNotif(notifEmitter, notifContent){
+function sendMessageNotif(notifEmitter, notifContent){
     let notif = new Notification({
         title: NOTIFICATION_TITLE,
         subtitle: notifEmitter,
@@ -55,7 +55,7 @@ function sendNotif(notifEmitter, notifContent){
 function getWinFocus(_event, notifEmitter, notifContent){
     if(!win.isFocused()){
         console.log(notifEmitter);
-        sendNotif(notifEmitter,notifContent);
+        sendMessageNotif(notifEmitter,notifContent);
     }
 }
 ipcMain.on('min-window', minWindow);
