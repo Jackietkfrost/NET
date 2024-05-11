@@ -1,12 +1,66 @@
 require('update-electron-app')();
-const {app,BrowserWindow,ipcMain,Menu, Notification, IncomingMessage,clipboard } = require('electron');
+const electronInstaller = require('electron-winstaller');
+const {app,BrowserWindow,ipcMain,Menu, Notification, IncomingMessage,clipboard, autoUpdater } = require('electron');
 const url = require('url');
 const path = require('path');
-
+const updateServer = "net-q96mwxvep-jackietkfrosts-projects.vercel.app";
+const updateUrl = `${updateServer}/update/${process.platform}/${app.getVersion()}`;
 let userName;
 //let uuid = store.get('uuid');
 let win;
 const NOTIFICATION_TITLE = 'N.E.T.';
+
+
+const spawnUpdate = function(args) {
+    return spawn(updateDotExe, args);
+  };
+
+var handleStartupEvent = function() {
+    if (process.platform !== 'win32') {
+      return false;
+    }
+  
+    var squirrelCommand = process.argv[1];
+    switch (squirrelCommand) {
+      case '--squirrel-install':
+      case '--squirrel-updated':
+  
+        // Optionally do things such as:
+        //
+        // - Install desktop and start menu shortcuts
+        spawnUpdate(['--createShortcut', exeName]);
+        // - Add your .exe to the PATH
+        // - Write to the registry for things like file associations and
+        //   explorer context menus
+  
+        // Always quit when done
+        app.quit();
+  
+        return true;
+      case '--squirrel-uninstall':
+        // Undo anything you did in the --squirrel-install and
+        // --squirrel-updated handlers
+  
+        // Always quit when done
+        app.quit();
+  
+        return true;
+      case '--squirrel-obsolete':
+        // This is called on the outgoing version of your app before
+        // we update to the new version - it's the opposite of
+        // --squirrel-updated
+        app.quit();
+        return true;
+    }
+  };
+  
+  if (handleStartupEvent()) {
+    return;
+  }
+
+//  Do a ternary check to see if the project is in development mode. If in Production, use this function, otherwise do nothing.
+//  autoUpdater.setFeedURL({ url })
+
 
 
 // Check if storage has uuid, if not, run generateUUID function from userIDGeneration.js
@@ -139,16 +193,19 @@ ipcMain.handle("paste-text", async (event, ...args) => {
     return clipboardText;
 });
 
-app.on('will-quit', (event) => {
+app.on('before-quit', (event) => {
     event.preventDefault()
     win.webContents.send('close-connection');
     app.quit();
 })
-app.on('window-all-closed', () => {
+app.on('window-all-closed', (event) => {
     // CREATE: Create a call to web renderer through webcontent through the preload.js
     
     if (process.platform !== 'darwin') {
-      app.quit()
+        //Check this tomorrow
+        win.webContents.send('close-connection');
+        event.preventDefault()
+        app.quit();
     }
   });
 
