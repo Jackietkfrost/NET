@@ -16,6 +16,7 @@ contextBridge.exposeInMainWorld('netVar', {
   setUsername: (name) => ipcRenderer.send('set-username', name),
   getReqUser: (callback) => ipcRenderer.on('get-username', callback),
   closeConnection: () => ipcRenderer.send('close-connection', closeConnection()),
+  getCPU: (cpuData) => ipcRenderer.on('get-cpu', cpuData),
 })
 contextBridge.exposeInMainWorld('titlebar', {
   closeWindow: () => ipcRenderer.send('close-window'),
