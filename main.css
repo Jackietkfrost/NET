@@ -165,6 +165,10 @@ input{
   }
   
 /* CRT END */
+
+.bios-start{
+    opacity:0;
+}
 body{
     color:#2fff66;
     font: 1.3rem Inconsolata, monospace;
