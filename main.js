@@ -187,8 +187,8 @@ app.on("ready", function () {
             //contextIsolation:false,
             preload: path.join(__dirname, 'src/preload.js')
         },
-        width: 765,
-        height: 550,
+        width: 1250,
+        height: 750,
         minHeight: 600,
         minWidth: 500,
         frame: false,
