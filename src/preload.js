@@ -18,6 +18,7 @@ contextBridge.exposeInMainWorld('netVar', {
   closeConnection: () => ipcRenderer.send('close-connection', closeConnection()),
   getCPU: (cpuData) => ipcRenderer.on('get-cpu', cpuData),
 })
+
 contextBridge.exposeInMainWorld('titlebar', {
   closeWindow: () => ipcRenderer.send('close-window'),
   maxWindow: () => ipcRenderer.send('max-window'),

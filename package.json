@@ -21,6 +21,8 @@
   },
   "homepage": "am-x2.com",
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
     "@electron-forge/cli": "^6.4.2",
     "@electron-forge/maker-deb": "^6.4.2",
     "@electron-forge/maker-rpm": "^6.4.2",
@@ -28,12 +30,13 @@
     "@electron-forge/maker-zip": "^6.4.2",
     "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
     "@electron-forge/publisher-github": "^6.4.2",
+    "babel-loader": "^9.1.3",
     "electron": "^30.0.3",
     "electron-winstaller": "^5.1.0"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "peerjs": "^1.5.0",
+    "peerjs": "^1.5.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "systeminformation": "^5.22.8",
