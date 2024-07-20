@@ -53,6 +53,8 @@ function flickerText() {
                 biosItems[i].style.opacity = 1;
             }, 800); // Delay before setting opacity back to 1
         }, i * nextItemFlickDelay); // Delay before flickering next element
+        // TODO: Run a boolean to true to canContinue to load the main page on any key press
+        
     }
 }
 
@@ -92,7 +94,7 @@ window.netVar.getCPU((_event, cpuInfo) => {
 
 function startupSound() {
     const startupSound = new Audio('../../assets/sounds/1990s PC Startup Screen.wav');
-    // startupSound.play();
+    startupSound.play();
 }
 document.addEventListener('DOMContentLoaded', () => {
     // getComputerInfo();
